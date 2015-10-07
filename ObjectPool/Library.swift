@@ -55,10 +55,19 @@ final class Library {
         var book = singleton.pool.getFromPool()
         book?.reader = reader
         book?.checkoutCount++
+        objc_sync_enter(self)
+        println("\n--- BOOK CHECKOUT ---")
+        println(book?.reader)
+        objc_sync_exit(self)
         return book
     }
     
     class func returnBook(book: Book) {
+        
+        objc_sync_enter(self)
+        println("\n--- RETURN BOOK ---")
+        println(book.reader)
+        objc_sync_exit(self)
         book.reader = nil
         singleton.pool.returnToPool(book)
     }
