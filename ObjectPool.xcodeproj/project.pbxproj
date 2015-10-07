@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2277083C1BC40E6300BE2EDA /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2277083B1BC40E6300BE2EDA /* Library.swift */; };
 		22B8C03D1BC1976900F72884 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B8C03C1BC1976900F72884 /* main.swift */; };
 		22B8C0451BC19B5C00F72884 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B8C0441BC19B5C00F72884 /* Book.swift */; };
 		22B8C0471BC19BB100F72884 /* Pool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B8C0461BC19BB100F72884 /* Pool.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2277083B1BC40E6300BE2EDA /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		22B8C0391BC1976900F72884 /* ObjectPool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ObjectPool; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B8C03C1BC1976900F72884 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		22B8C0441BC19B5C00F72884 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				22B8C03C1BC1976900F72884 /* main.swift */,
 				22B8C0441BC19B5C00F72884 /* Book.swift */,
 				22B8C0461BC19BB100F72884 /* Pool.swift */,
+				2277083B1BC40E6300BE2EDA /* Library.swift */,
 			);
 			path = ObjectPool;
 			sourceTree = "<group>";
@@ -125,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22B8C0471BC19BB100F72884 /* Pool.swift in Sources */,
+				2277083C1BC40E6300BE2EDA /* Library.swift in Sources */,
 				22B8C0451BC19B5C00F72884 /* Book.swift in Sources */,
 				22B8C03D1BC1976900F72884 /* main.swift in Sources */,
 			);
@@ -244,6 +248,7 @@
 				22B8C0421BC1976900F72884 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

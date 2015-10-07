@@ -34,7 +34,7 @@ class Pool<T> {
         
     }
 
-    // return the object at the head of the harray
+    // return the object at the head of the array
     func getFromPool() -> T? {
         var result:T?
         // when counter reaches zero, calls to the dispatch_semaphore_wait will block
@@ -43,7 +43,6 @@ class Pool<T> {
                 result = self.data.removeAtIndex(0)
             }
         }
-        
         
         return result
     }
