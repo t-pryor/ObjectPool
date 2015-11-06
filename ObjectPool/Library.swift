@@ -21,36 +21,20 @@ import Foundation
 final class Library {
     
     // Swift 1.2 Singleton
-    static let singleton = Library(stockLevel: 5)
+    static let singleton = Library(stockLevel: 200)
     
-    
-    private var books: [Book]
     private let pool: Pool<Book>
     
     // private controls the creation of the singleton completely
     private init(stockLevel: Int) {
-        books = [Book]()
-        for count in 1...stockLevel {
-            books.append(Book(author: "Dickens, Charles", title: "Hard Times", stock: count))
-        }
-    
-        pool = Pool<Book>(items: books)
+        
+        var stockId = 1
+        
+        pool = Pool<Book>(maxItemCount: stockLevel, factory: { () in
+            return BookSeller.buyBook("Dickens, Charles", title: "Hard Times", stockNumber: stockId++)
+        })
     }
-    
 
-    /* Swift 1.0 Singleton
-    private class var singleton: Library {
-        struct SingletonWrapper {
-            static let singleton = Library(stockLevel:2)
-        }
-        return SingletonWrapper.singleton
-    }*/
-    
-    
-    /*
-        Type methods checkout and returnBook interact with the pool on behalf of callers
-    
-    */
     class func checkoutBook(reader: String) -> Book? {
         var book = singleton.pool.getFromPool()
         book?.reader = reader
@@ -74,16 +58,19 @@ final class Library {
     
     // details each of the Book objects that the Library created
     class func printReport() {
-        for book in singleton.books {
-            println("...Book#\(book.stockNumber)...")
-            println("Checked out \(book.checkoutCount) times")
-            if (book.reader != nil) {
-                println("Checked out to \(book.reader!)")
-                
-            } else {
-                println("In stock")
+        singleton.pool.processPoolItems({(books) in
+            for book in books {
+                println("...Book#\(book.stockNumber)...")
+                println("Checked out \(book.checkoutCount) times")
+                if (book.reader != nil) {
+                    println("Checked out to \(book.reader!)")
+                    
+                } else {
+                    println("In stock")
+                }
             }
-        }
+            println("There are \(books.count) books in the pool")
+        })
     }
     
 }
