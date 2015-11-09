@@ -13,7 +13,17 @@
 
 import Foundation
 
-class Pool<T> {
+/*
+    Don't want to limit the range of objects the pool can work with, so check for reusability
+    only if the PoolItem protocol is implemented
+    Checking protocol conformance can be done only when the protocol is decorated with the
+    @objc attribute, and applying the attribute means that it can be implemented only by classes
+    not structs
+*/
+
+// to give Swift the type info it needs to check conformance, restrict the Pool generic type parameter
+// AnyObject protocol means Pool can work only with class-based objects
+class Pool<T:AnyObject> {
     // data array is used like a simple queue collection containing the 
     // objects that are available for use
     private var data = [T]()
@@ -64,9 +74,12 @@ class Pool<T> {
     // return previously used object to the end of the array
     func returnToPool(item:T) {
         dispatch_async(arrayQ) {
-            self.data.append(item)
-            // counter is incremented
-            dispatch_semaphore_signal(self.semaphore)
+            let pitem = item as? PoolItem
+            if (pitem == nil || pitem!.canReuse) {
+                self.data.append(item)
+                // counter is incremented
+                dispatch_semaphore_signal(self.semaphore)
+            }
         }
     }
     

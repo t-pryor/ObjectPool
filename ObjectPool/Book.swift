@@ -14,7 +14,7 @@ abstract examples in SW dev: threads and network connections
 
 */
 
-class Book {
+@objc class Book: PoolItem {
     let author: String
     let title: String
     let stockNumber: Int
@@ -27,4 +27,15 @@ class Book {
         self.stockNumber = stock
         
     }
+    
+    var canReuse: Bool {
+        get {
+            let reusable = checkoutCount < 5
+            if (!reusable) {
+                println("Eject: Book#\(self.stockNumber)")
+            }
+            return reusable
+        }
+    }
+    
 }

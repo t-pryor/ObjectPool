@@ -21,7 +21,7 @@ import Foundation
 final class Library {
     
     // Swift 1.2 Singleton
-    static let singleton = Library(stockLevel: 200)
+    static let singleton = Library(stockLevel: 5)
     
     private let pool: Pool<Book>
     
